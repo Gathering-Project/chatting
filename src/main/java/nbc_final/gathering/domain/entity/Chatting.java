@@ -1,28 +1,17 @@
-package nbc_final.gathering.domain.entity;
+import java.io.Serializable;
 
-import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+public class Chatting implements Serializable {
+    private String senderId;
+    private String receiverId;
+    private String content;
+    private String status = "PENDING";
 
-@Table(name = "chattings")
-@Entity
-@Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Chatting extends TimeStamped {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "chatting_id")
-    private Long id;
-    private Long userId1;
-    private Long userId2;
-
-    public static Chatting createChatting(Long userId1, Long userId2){
-        Chatting chatting = new Chatting();
-        chatting.userId1 = userId1;
-        chatting.userId2 = userId2;
-        return chatting;
+    // Constructor, getters, and setters
+    public ChatMessage(String senderId, String receiverId, String content) {
+        this.senderId = senderId;
+        this.receiverId = receiverId;
+        this.content = content;
     }
 
+    // Getters and setters omitted for brevity
 }

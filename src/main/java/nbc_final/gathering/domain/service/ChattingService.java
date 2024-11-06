@@ -1,16 +1,18 @@
-package nbc_final.gathering.domain.service;
-
-import lombok.RequiredArgsConstructor;
-import nbc_final.gathering.domain.repository.ChattingRepository;
-import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
-public class ChattingService {
+public class ChatMessageService {
 
-    private final KafkaTemplate<String, Object> kafkaTemplate;
-    private final ChattingRepository chattingRepository;
+    private final RabbitTemplate rabbitTemplate;
 
+    public ChatMessageService(RabbitTemplate rabbitTemplate) {
+        this.rabbitTemplate = rabbitTemplate;
+    }
 
+    public void sendMessage(String senderId, String receiverId, String content) {
+        ChatMessage message = new ChatMessage(senderId, receiverId, content);
+        rabbitTemplate.convertAndSend(RabbitMQConfig.QUEUE_NAME, message);
+        System.out.println("Message sent: " + content);
+    }
 }
