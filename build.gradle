@@ -36,6 +36,16 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
+    // MongoDB
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+
+	// RabbitMQ
+	implementation 'org.springframework.boot:spring-boot-starter-amqp'
+
+	// Websocket및 STOMP
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+    // Kafka
 	implementation 'org.apache.kafka:kafka-streams'
 	implementation 'org.springframework.kafka:spring-kafka'
 	implementation 'com.fasterxml.jackson.core:jackson-databind'
